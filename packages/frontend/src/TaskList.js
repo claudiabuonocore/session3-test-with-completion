@@ -6,6 +6,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import EventIcon from '@mui/icons-material/Event';
 
+// Priority color mapping - using selected color for active priority
+const PRIORITY_COLORS = {
+  P1: { background: '#07F2E6', label: 'High' },
+  P2: { background: '#07F2E6', label: 'Medium' },
+  P3: { background: '#07F2E6', label: 'Low' }
+};
+
 function TaskList({ onEdit }) {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -203,6 +210,19 @@ function TaskList({ onEdit }) {
                 gap: 1
               }}
             >
+              {task.priority && (
+                <Chip
+                  label={`${PRIORITY_COLORS[task.priority]?.label || task.priority} (${task.priority})`}
+                  size="small"
+                  sx={{
+                    height: 20,
+                    fontSize: '0.7rem',
+                    fontWeight: 500,
+                    background: PRIORITY_COLORS[task.priority]?.background || '#9e9e9e',
+                    color: 'white',
+                  }}
+                />
+              )}
               {task.due_date && (
                 <Chip
                   icon={<EventIcon sx={{ fontSize: 14 }} />}
