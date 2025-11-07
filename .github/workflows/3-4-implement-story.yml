@@ -10,6 +10,7 @@ permissions:
   contents: read
   actions: write
   issues: write
+  id-token: write
 
 jobs:
   find_exercise:
